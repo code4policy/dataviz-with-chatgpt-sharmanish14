@@ -1,0 +1,41 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: #f9f9f9;
+}
+
+/* Header styling */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Chart container styling */
+#chart {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Bar styling */
+.bar {
+    fill: steelblue;
+    transition: fill 0.2s; /* Smooth color transition on hover */
+}
+
+/* Change bar color on hover */
+.bar:hover {
+    fill: orange;
+}
+
+/* Axis line and text styling */
+.axis path,
+.axis line {
+    fill: none;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-size: 12px;
+}
