@@ -13,10 +13,11 @@ const svg = d3.select("#chart")
 
 // Load data from CSV
 d3.csv("boston_311_2023_by_reason.csv").then(data => {
-    // Convert count to a numeric value
+    // Convert Count to numeric and sort the data by Count in descending order
     data.forEach(d => {
-        d.Count = +d.Count; // Ensure count is a number
+        d.Count = +d.Count; // Ensure Count is a number
     });
+    data.sort((a, b) => b.Count - a.Count); // Sort data by Count (largest to smallest)
 
     // Create scales
     const x = d3.scaleBand()
@@ -54,4 +55,3 @@ d3.csv("boston_311_2023_by_reason.csv").then(data => {
 }).catch(error => {
     console.error("Error loading the data:", error);
 });
-
