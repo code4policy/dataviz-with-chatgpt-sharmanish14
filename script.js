@@ -1,7 +1,7 @@
 // Set dimensions for the chart
 const width = 800;
 const height = 400;
-const margin = { top: 20, right: 30, bottom: 100, left: 60 };
+const margin = { top: 20, right: 30, bottom: 20, left: 200 }; // Increased left margin for long labels
 
 // Create an SVG container
 const svg = d3.select("#chart")
@@ -20,27 +20,24 @@ d3.csv("boston_311_2023_by_reason.csv").then(data => {
     data.sort((a, b) => b.Count - a.Count); // Sort data by Count (largest to smallest)
 
     // Create scales
-    const x = d3.scaleBand()
+    const y = d3.scaleBand()
         .domain(data.map(d => d.reason))
-        .range([0, width])
+        .range([0, height])
         .padding(0.2);
 
-    const y = d3.scaleLinear()
+    const x = d3.scaleLinear()
         .domain([0, d3.max(data, d => d.Count)])
         .nice()
-        .range([height, 0]);
+        .range([0, width]);
 
-    // Add X-axis
-    svg.append("g")
-        .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(x))
-        .selectAll("text")
-        .attr("transform", "rotate(-45)")
-        .style("text-anchor", "end");
-
-    // Add Y-axis
+    // Add Y-axis (labels on the left)
     svg.append("g")
         .call(d3.axisLeft(y));
+
+    // Add X-axis (count scale)
+    svg.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(d3.axisBottom(x).ticks(5)); // Adjust number of ticks if necessary
 
     // Add bars
     svg.selectAll(".bar")
@@ -48,10 +45,10 @@ d3.csv("boston_311_2023_by_reason.csv").then(data => {
         .enter()
         .append("rect")
         .attr("class", "bar")
-        .attr("x", d => x(d.reason))
-        .attr("y", d => y(d.Count))
-        .attr("width", x.bandwidth())
-        .attr("height", d => height - y(d.Count));
+        .attr("y", d => y(d.reason))
+        .attr("x", 0)
+        .attr("height", y.bandwidth())
+        .attr("width", d => x(d.Count));
 }).catch(error => {
     console.error("Error loading the data:", error);
 });
