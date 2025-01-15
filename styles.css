@@ -1,0 +1,79 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: #f9f9f9;
+}
+
+/* Header styling */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h4 {
+    text-align: center;
+    color: #738386;
+}
+
+/* Chart container styling */
+#chart {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+/* Bar styling */
+.bar {
+    fill: steelblue;
+    transition: fill 0.2s; /* Smooth color transition on hover */
+}
+
+/* Change bar color on hover */
+.bar:hover {
+    fill: orange;
+}
+
+/* Axis line and text styling */
+.axis path,
+.axis line {
+    fill: none;
+    shape-rendering: crispEdges;
+}
+
+g.axis text {
+    font-size: 10px;
+    fill: #045a6b;
+}
+
+/* Footer styling */
+footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+
+footer a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+#show-more {
+    display: block; /* Make the button a block element */
+    margin: 20px auto; /* Center it horizontally */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+
